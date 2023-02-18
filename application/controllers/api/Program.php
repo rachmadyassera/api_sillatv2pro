@@ -17,8 +17,10 @@ class Program extends REST_Controller
 
     public function index_get(){
 
-        $norek_sk = $this->get('norek_subkegiatan');  
-		$pks = $this->pks->getPKS($norek_sk);
+        // $norek_sk = $this->get('norek_subkegiatan');  
+		// $pks = $this->pks->getPKS($norek_sk);
+        $opd = $this->get('opd');  
+		$pks = $this->pks->getPKS($opd);
 
         // if ($norek_sk === null){
 
