@@ -25,7 +25,8 @@ class ProgramKegiatanSubKegiatan_m extends CI_Model
 		$this->db->join('tbl_sub_kegiatan', 'tbl_kegiatan.id_kegiatan = tbl_sub_kegiatan.id_kegiatan_sub_kegiatan');
 		$this->db->join('tbl_opd', 'tbl_sub_kegiatan.id_opd_sub_kegiatan = tbl_opd.id_opd');
 		$this->db->where('id_opd', $opd); 
-		$this->db->distinct('norek_sub_kegiatan');
+		// $this->db->distinct('norek_sub_kegiatan');
+		$this->db->group_by('tbl_sub_kegiatan.norek_sub_kegiatan');// add group_by
 		$hsl = $this->db->get()->result_array();
 		return $hsl; 
         
