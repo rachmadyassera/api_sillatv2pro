@@ -25,7 +25,7 @@ class ProgramKegiatanSubKegiatan_m extends CI_Model
 		$this->db->join('tbl_sub_kegiatan', 'tbl_kegiatan.id_kegiatan = tbl_sub_kegiatan.id_kegiatan_sub_kegiatan');
 		$this->db->join('tbl_opd', 'tbl_sub_kegiatan.id_opd_sub_kegiatan = tbl_opd.id_opd');
 		$this->db->where('id_opd', $opd); 
-		$this->db->distinct();
+		$this->db->distinct('norek_sub_kegiatan');
 		$hsl = $this->db->get()->result_array();
 		return $hsl; 
         
@@ -39,6 +39,7 @@ class ProgramKegiatanSubKegiatan_m extends CI_Model
 		$this->db->join('tbl_opd', 'tbl_sub_kegiatan.id_opd_sub_kegiatan = tbl_opd.id_opd');
 		$this->db->where('norek_sub_kegiatan', $norek_sk);  
 		$this->db->where('id_opd', $opd); 
+		$this->db->limit(1); 
 		$hsl = $this->db->get()->result_array();
 		return $hsl; 
         
