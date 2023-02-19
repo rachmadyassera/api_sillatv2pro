@@ -17,18 +17,19 @@ class Program extends REST_Controller
 
     public function index_get(){
 
-        // $norek_sk = $this->get('norek_subkegiatan');  
 		// $pks = $this->pks->getPKS($norek_sk);
+		// $pks = $this->pks->getPKS($opd);
+        $norek_sk = $this->get('norek_subkegiatan');  
         $opd = $this->get('opd');  
-		$pks = $this->pks->getPKS($opd);
 
-        // if ($norek_sk === null){
+        if ($norek_sk === null){
 
-        // 	$pks = $this->pks->getPKS();
+			$pks = $this->pks->getPKS($opd);
         
-        // }else{
-        //     $pks = $this->pks->getPKS($norek_sk);
-        // }
+        }else{
+			
+            $pks = $this->pks->getPKS_by_noreksubkegiatan($norek_sk, $opd);
+        }
        
         if ($pks){
             $this->response([

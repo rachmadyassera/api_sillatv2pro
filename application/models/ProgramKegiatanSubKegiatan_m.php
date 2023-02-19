@@ -31,6 +31,20 @@ class ProgramKegiatanSubKegiatan_m extends CI_Model
         
     }
 
+	public function getPKS_by_noreksubkegiatan($norek_sk, $opd){  
+		$this->db->select('norek_program, nama_program, norek_kegiatan, nama_kegiatan, norek_sub_kegiatan, nama_sub_kegiatan, id_sub_kegiatan, id_opd, nama_opd');
+		$this->db->from('tbl_kegiatan');
+		$this->db->join('tbl_program', 'tbl_kegiatan.id_program_kegiatan = tbl_program.id_program');
+		$this->db->join('tbl_sub_kegiatan', 'tbl_kegiatan.id_kegiatan = tbl_sub_kegiatan.id_kegiatan_sub_kegiatan');
+		$this->db->join('tbl_opd', 'tbl_sub_kegiatan.id_opd_sub_kegiatan = tbl_opd.id_opd');
+		$this->db->where('norek_sub_kegiatan', $norek_sk);  
+		$this->db->where('id_opd', $opd); 
+		$hsl = $this->db->get()->result_array();
+		return $hsl; 
+        
+    }
+
+
 	public function getSumPaguPKS($norek_sk,$tahun,$opd){
 
 		
