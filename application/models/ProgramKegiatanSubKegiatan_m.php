@@ -50,7 +50,7 @@ class ProgramKegiatanSubKegiatan_m extends CI_Model
 	public function getSumPaguPKS($norek_sk,$tahun,$opd){
 
 		
-		$this->db->select('norek_sub_kegiatan, nama_sub_kegiatan, tahun_program, id_sub_kegiatan, id_opd_pro, nama_opd');
+		$this->db->select('norek_sub_kegiatan, nama_sub_kegiatan, tahun_program, id_sub_kegiatan, id_opd_pro, nama_opd, nama_dana');
 		$this->db->select_sum('nilai_pagu');
 		$this->db->from('tbl_kegiatan');
 		$this->db->join('tbl_program', 'tbl_kegiatan.id_program_kegiatan = tbl_program.id_program');
@@ -58,6 +58,7 @@ class ProgramKegiatanSubKegiatan_m extends CI_Model
 		$this->db->join('tbl_sub2_kegiatan', 'tbl_sub_kegiatan.id_sub_kegiatan = tbl_sub2_kegiatan.id_sub_kegiatan_sub2_kegiatan');
 		$this->db->join('tbl_pagu', 'tbl_sub2_kegiatan.id_sub2_kegiatan = tbl_pagu.id_sub2_kegiatan_pagu');
 		$this->db->join('tbl_opd', 'tbl_pagu.id_opd_pagu = tbl_opd.id_opd');
+		$this->db->join('tbl_sumber_dana', 'tbl_pagu.sumber_dana = tbl_sumber_dana.id_sumber_dana');
 		$this->db->where('tahun_program', $tahun);
 		$this->db->where('norek_sub_kegiatan', $norek_sk); 
 		$this->db->where('id_opd_pro', $opd); 
